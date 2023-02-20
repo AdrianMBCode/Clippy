@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // ℹ️ Handles password encryption
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 
 // How many rounds should bcrypt run the salt (default - 10 rounds)
@@ -16,9 +16,16 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 // GET /auth/signup
-router.get("/signup", isLoggedOut, (req, res) => {
+router.get("/choice", isLoggedOut, (req, res, next) => {
+  res.render("auth/choice");
+});
+router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
 });
+router.get("/seniorsignup", isLoggedOut, (req, res, next) => {
+  res.render("auth/seniorsignup");
+});
+
 
 // POST /auth/signup
 router.post("/signup", isLoggedOut, (req, res) => {
