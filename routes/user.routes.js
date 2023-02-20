@@ -74,8 +74,9 @@ router.get("/:id/pending", (req,res,next)=>{
     .catch((err)=>console.log(err))
 })
 
-router.get("/:id", isLoggedIn, (req, res, next) => {
+router.get("/:id", (req, res, next) => {
     let id = req.params.id
+    console.log("Inside the route!!")
     User.findById(id)
     .then((result)=>{
         if(result.role === "senior"){
