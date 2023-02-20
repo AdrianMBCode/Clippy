@@ -42,16 +42,16 @@ const userSchema = new Schema({
   description: String,
   gitHubRepo: { type: String },
   image: String,
-  solution: String,
-  ImgSolution: String
+  solution: {type: String, author: { type: Schema.Types.ObjectID, ref: "User" }},
+  ImgSolution: String,
+  isSolved: {type: Boolean, default: false}
 });
 ```
 #### Reviews.model.js
 ```js
   const reviewsSchema = new Schema({
-  author: { type: Schema.Types.ObjectID, ref: "User" },
+  associatedTickets: { type: Schema.Types.ObjectID, ref: "User" },
   description: String,
-  images: [String],
   rating: Number
 });
 ````
