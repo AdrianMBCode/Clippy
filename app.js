@@ -19,7 +19,7 @@ const app = express();
 require("./config")(app);
 
 const capitalize = require("./utils/capitalize");
-const projectName = "new-app";
+const projectName = "clippy";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
