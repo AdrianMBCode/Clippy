@@ -8,7 +8,8 @@ const ticketSchema = new Schema(
         },
         author: {
             type: Schema.Types.ObjectId,
-            ref: "User"
+            ref: "User",
+            required: true
         },
         description:{
             type: String,
@@ -23,17 +24,15 @@ const ticketSchema = new Schema(
             required: true,
         },
         solution: {
-            type: String,
-            required: true,
+            text: String,
             author: {
                 type: Schema.Types.ObjectId,
                 ref: "User"
-            }
+            },
+            imgSolution: String
         },
-        imgSolution: {
-            type: String,
-        },
-        isPending: {type: Boolean, default: true}
+        isPending: {type: Boolean, default: true},
+        technologiesUsed: [String]
     },
     {
       // this second object adds extra properties: `createdAt` and `updatedAt`

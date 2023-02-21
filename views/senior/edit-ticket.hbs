@@ -1,5 +1,8 @@
-<h1>Ticket form with solution input and imageSolution field.</h1>
-<form action="/senior/33/ticket/:ticketId" method="POST">
+<h1>Ticket form for Senior's solution.</h1>
+<form action="/{{id}}/tickets/{{ticket._id}}" method="POST">
+<p>{{ticket.title}}</p>
+<p>{{ticket.description}}</p>
 <input type="text" id="solution" name="solution">
-<label for="solution"></label>
+<label for="solution">Solution:</label>
+<button type="submit"></button>
 </form>
