@@ -126,26 +126,31 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           .render("auth/login", { errorMessage: "Wrong credentials." });
         return;
       }
-      // If user is found based on the username, check if the in putted password matches the one saved in the database
-      bcrypt
-        .compare(password, user.password)
-        .then((isSamePassword) => {
-          if (!isSamePassword) {
-            res
-              .status(400)
-              .render("auth/login", { errorMessage: "Wrong credentials." });
-            return;
-          }
-          // Add the user object to the session object
-          req.session.currentUser = user.toObject();
-          // Remove the password field
-          delete req.session.currentUser.password;
-          res.render("junior/profile");
-        })
-        .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
+      
+      // Check if user is junior or senior
+      if (user.role === "junior") {
+        // If user is a junior user, render the junior profile view
+        req.session.currentUser = user.toObject();
+        // Remove the password field
+        delete req.session.currentUser.password;
+        res.render("junior/profile");
+      } else if (user.role === "senior") {
+        // If user is a senior user, render the senior profile view
+        req.session.currentUser = user.toObject();
+        // Remove the password field
+        delete req.session.currentUser.password;
+        res.render("senior/profile");
+      } else {
+        // If the user's type is neither "junior" nor "senior", return an error
+        res
+          .status(400)
+          .render("auth/login", { errorMessage: "Invalid user type." });
+        return;
+      }
     })
     .catch((err) => next(err));
 });
+
 
 // GET /auth/logout
 router.get("/logout", isLoggedIn, (req, res) => {
