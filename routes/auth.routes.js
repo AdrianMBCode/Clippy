@@ -30,6 +30,7 @@ router.get("/senior", isLoggedOut, (req, res, next) => {
 // POST /auth/signup
 router.post("/signup/:role", isLoggedOut, (req, res) => {
   console.log("dentrorunta");
+  console.log("dentroruntajej");
   const { username, email, password, repeatPassword } = req.body;
   let role = req.params.role;
 
