@@ -19,21 +19,23 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 router.get("/choice", isLoggedOut, (req, res, next) => {
   res.render("auth/choice");
 });
-router.get("/signup", isLoggedOut, (req, res, next) => {
-  res.render("auth/signup");
+router.get("/junior", isLoggedOut, (req, res, next) => {
+  res.render("auth/junior");
 });
-router.get("/seniorsignup", isLoggedOut, (req, res, next) => {
-  res.render("auth/seniorsignup");
+router.get("/senior", isLoggedOut, (req, res, next) => {
+  res.render("auth/senior");
 });
 
 
 // POST /auth/signup
-router.post("/signup", isLoggedOut, (req, res) => {
+router.post("/signup/:role", isLoggedOut, (req, res) => {
+  console.log("dentrorunta");
   const { username, email, password, repeatPassword } = req.body;
+  let role = req.params.role;
 
   // Check that username, email, and password are provided
   if (username === "" || email === "" || password === "" || repeatPassword === "") {
-    res.status(400).render("auth/signup", {
+    res.status(400).render("auth/login", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email and password.",
     });
@@ -42,7 +44,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
 
   if (password.length < 6) {
-    res.status(400).render("auth/signup", {
+    res.status(400).render(`auth/${role}`, {
       errorMessage: "Your password needs to be at least 6 characters long.",
     });
 
@@ -68,16 +70,16 @@ router.post("/signup", isLoggedOut, (req, res) => {
     .then((salt) => bcrypt.hash(password, salt))
     .then((hashedPassword) => {
       // Create a user and save it in the database
-      return User.create({ username, email, password: hashedPassword });
+      return User.create({ username, email, password: hashedPassword, role });
     })
     .then((user) => {
       res.redirect("/auth/login");
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("auth/signup", { errorMessage: error.message });
+        res.status(500).render(`auth/${role}`, { errorMessage: error.message });
       } else if (error.code === 11000) {
-        res.status(500).render("auth/signup", {
+        res.status(500).render(`auth/${role}`, {
           errorMessage:
             "Username and email need to be unique. Provide a valid username or email.",
         });
