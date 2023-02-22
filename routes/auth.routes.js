@@ -14,23 +14,23 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
-// const isLoggedOut = require("../middleware/isLoggedOut");
-// const isLoggedIn = require("../middleware/isLoggedIn");
+const isLoggedOut = require("../middleware/isLoggedOut");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 // GET /auth/signup
-router.get("/choice", /*isLoggedOut,*/ (req, res, next) => {
+router.get("/choice", isLoggedOut, (req, res, next) => {
   res.render("auth/choice");
 });
-router.get("/junior", /*isLoggedOut,*/ (req, res, next) => {
+router.get("/junior", isLoggedOut, (req, res, next) => {
   res.render("auth/junior");
 });
-router.get("/senior", /*isLoggedOut,*/ (req, res, next) => {
+router.get("/senior", isLoggedOut, (req, res, next) => {
   res.render("auth/senior");
 });
 
 
 // POST /auth/signup
-router.post("/signup/:role", /*isLoggedOut,*/ (req, res) => {
+router.post("/signup/:role", isLoggedOut, (req, res, next) => {
   console.log("dentrorunta");
   console.log("dentroruntajej");
   const { username, email, password, repeatPassword } = req.body;
@@ -77,13 +77,23 @@ router.post("/signup/:role", /*isLoggedOut,*/ (req, res) => {
     })
     .then((user) => {
       console.log("Usuario registrado: ", user);
-      let usuarioRegistrado = req.params.user
+      //let usuarioRegistrado = req.params.user
+      let message = "hola"
       transporter.sendMail({
+        
+          html: 'Embedded image: <img src="cid:clippy1"/>',
+          attachments: [{
+              filename: 'headerMailClippy.png',
+              path: 'http://localhost:3000/images/headerMailClippy.png',
+              cid: 'clippy1' //same cid value as in the html img src
+          }]
+        
+        ,
         from: `"Clippy " <${process.env.EMAIL_ADDRESS}>`,
         to: email,
         subject: "Bienvenidos a Clippy",
         username: username,
-        html: templates.templateExample(message),
+        html: templates.templateExample(username),
       })
 
 
@@ -105,14 +115,14 @@ router.post("/signup/:role", /*isLoggedOut,*/ (req, res) => {
 });
 
 // GET /auth/login
-router.get("/login", /*isLoggedOut,*/ (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
 
 
 
 // POST /auth/login
-router.post("/login", /*isLoggedOut,*/ (req, res, next) => {
+router.post("/login", isLoggedOut, (req, res, next) => {
   const { username, email, password } = req.body;
 
   // Check that username, email, and password are provided
@@ -170,7 +180,7 @@ router.post("/login", /*isLoggedOut,*/ (req, res, next) => {
 
 
 // GET /auth/logout
-router.get("/logout", /*isLoggedIn,*/ (req, res) => {
+router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       res.status(500).render("auth/logout", { errorMessage: err.message });

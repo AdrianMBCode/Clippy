@@ -1,23 +1,17 @@
 function templateExample(message) {
 
 //agregar imagen a mail:
-var mailOptions = {
-  html: 'Embedded image: <img src="cid:unique@kreata.ee"/>',
-  attachments: [{
-      filename: 'Clippy.png',
-      path: '../public/images/Clippy.png',
-      cid: 'unique@kreata.ee' //same cid value as in the html img src
-  }]
-}
+
 //ends img mail !!!
 
 
   return `<!doctype html>
   <html>
+
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Simple Transactional Email</title>
+      <title>Clippy</title>
       <style>
   @media only screen and (max-width: 620px) {
     table.body h1 {
@@ -123,13 +117,14 @@ var mailOptions = {
               <table role="presentation" class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background: #ffffff; border-radius: 3px; width: 100%;" width="100%">
   
                 <!-- START MAIN CONTENT AREA -->
+                <img src="cid:clippy1">
                 <tr>
                   <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;" valign="top">
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
                       <tr>
                         <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
-                          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">¡Hola ${message}</p>
-                          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Para terminar de registrarte, debes hacer log in en el siguiente enlace</p>
+                          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">¡Hola ${message}!</p>
+                          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Bienvenido a Clippy, para terminar de unirte a nuestra familia solo debes hacer click en el siguiente botón:</p>
                           <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; width: 100%;" width="100%">
                             <tbody>
                             <br>
@@ -138,7 +133,7 @@ var mailOptions = {
                                   <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
                                     <tbody>
                                       <tr>
-                                        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center; background-color: #3498db;" valign="top" align="center" bgcolor="#3498db"> <a href="http://localhost:3000/" target="_blank" style="border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; text-transform: capitalize; background-color: #3498db; border-color: #3498db; color: #ffffff;">Finalizar</a> </td>
+                                        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 5px; text-align: center; background-color: #3498db;" valign="top" align="center" bgcolor="#3498db"> <a href="http://localhost:3000/auth/login" target="_blank" style="border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-decoration: none; text-transform: capitalize; background-color: #3498db; border-color: #3498db; color: #ffffff;">Finalizar</a> </td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -146,8 +141,8 @@ var mailOptions = {
                               </tr>
                             </tbody>
                           </table>
-                          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">En Clippy estamos contentos de tenerte</p>
-                          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Te esperamos pronto.</p>
+                          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Estamos felices de tenerte con nosotros.</p>
+                          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">La familia de Clippy</p>
                         </td>
                       </tr>
                     </table>
@@ -178,7 +173,7 @@ var mailOptions = {
       </table>
     </body>
   </html>
-${message}`;
+`;
 }
 
 module.exports = {
