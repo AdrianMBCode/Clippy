@@ -1,32 +1,14 @@
-<div id="form">
-  <h2>Sign Up</h2>
-  <form action="/auth/signup/senior" method="POST">
-
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
-
-    <label> Email
-      <input type="email" name="email" placeholder="Your email" />
-    </label>
-
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
-
-    <label> Password
-      <input type="password" name="RepeatPassword" placeholder="Repeat password" />
-    </label>
-
-    <label> GitHub
-      <input type="text" name="github" placeholder="GitHub Url" />
-    </label>
-
-    <button type="submit">Sign Up</button>
-
-
+<div class="d-flex align-items-center justify-content-center vh-100">
+<form class="form w-25" action="/auth/signup/senior" method="POST">
+    <p class="heading">Sign Up as Senior</p>
+    <input class="input" placeholder="Username" type="text" name="username">
+    <input class="input" placeholder="Email" type="text" name="email">
+    <input class="input" placeholder="Password" type="password" name="password">
+    <input class="input" placeholder="Repeat Password" type="password" name="repearPassword">
+    <input class="input" placeholder="GitHub Url" type="text" name="github">
+    <button class="btn">Submit</button>
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
-  </form>
+</form>
 </div>
