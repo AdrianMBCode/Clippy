@@ -1,27 +1,18 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto" >
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/auth/login">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/choice">Sign Up
-          </a>
-        </li>
-      </ul>
-    </div>
+{{>nav}}
+<div class="container d-flex justify-content-end mt-5">
+  <div class="text-right flex-column align-items-end">
+    <h1 class="mb-3">Welcome to Clippy!</h1>
+    <p class="mb-3">Join our platform where you will be able to solve your doubts at the hands of experts.</p>
+    <ol class="mb-5">
+      <li>Create a ticket</li>
+      <li>Receive your solution</li>
+      <li>Send your feedback</li>
+    </ol>
+    <a href="/auth/choice">
+      <button class="btn btn-primary get-started">Get Started</button>
+    </a>
   </div>
-</nav>
-<div class="container d-flex align-items-center justify-content-center vh-100">
-  <h1 class="text-center">¡Bienvenido a clippy!</h1>
-  <a href="/auth/choice">
-    <button class="btn btn-primary get-started">Get Started</button>
-  </a>
+  <img src="../images/logoClippy.png" alt="logoClippy">
 </div>
 
 {{!-- <a class="btn btn-secondary" href="/auth/logout">Log Out</a> --}}
