@@ -130,7 +130,7 @@ button.get-started:hover::before {
   box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
   padding: 20px;
   max-width: 500px;
-  background-color: whitesmoke;
+  background-color: white;
   margin-top: 20px;
 }
 .fieldset-border {
