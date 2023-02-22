@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const transporter = require("../config/transporter.config")
+const templates = require("../templates/template");
 
 // ℹ️ Handles password encryption
 const bcrypt = require("bcryptjs");
@@ -74,6 +76,31 @@ router.post("/signup/:role", isLoggedOut, (req, res, next) => {
       return User.create({ username, email, password: hashedPassword, role });
     })
     .then((user) => {
+      console.log("Usuario registrado: ", user);
+      //let usuarioRegistrado = req.params.user
+      let message = "hola"
+      transporter.sendMail({
+        
+          //html: 'Embedded image: <img src="cid:clippy1"/>',
+          attachments: [{
+              filename: 'headerMailClippy.png',
+              path: 'http://localhost:3000/images/headerMailClippy.png',
+              cid: 'clippy1' //same cid value as in the html img src
+          }],
+
+        from: `"Clippy " <${process.env.EMAIL_ADDRESS}>`,
+        to: email,
+        subject: "Bienvenidos a Clippy",
+        username: username,
+        html: templates.templateExample(username),
+      },
+      (err)=> console.log("error nodemailer" , err)
+
+  
+        )
+
+
+
       res.redirect("/auth/login");
     })
     .catch((error) => {
