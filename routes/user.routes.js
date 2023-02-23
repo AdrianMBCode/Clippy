@@ -54,40 +54,49 @@ router.post("/:id/tickets", (req, res, next) => {
     let id = req.params.id
     let {title, description, gitHubRepo, image} = req.body
     let newTicket = {title, description, gitHubRepo, image, author: id}
-    Ticket.create(newTicket)
-    .then((result)=>{
-        res.render("junior/profile");
+    User.findById(id)
+    .then((data)=>{
+        Ticket.create(newTicket)
+        .then((result)=>{
+        res.render("junior/pending", {user:data});
     })
     .catch((err)=>console.log(err))
+
+    })
+    
 });
 
-router.get("/:id/tickets", (req, res, next) => {
-    // let id = req.params.id
-    // User.findById(id)
-    // .then((result)=>{
-    //     if(result.role === "senior"){
-    //         Ticket.find()
-    //         .then((result)=>{
-    //             res.render("senior/tickets", {tickets:result});
-    //         })
-    //         .catch((err)=>console.log(err))
-    //     }
-    //     else if (result.role === "junior"){
+router.get("/tickets", (req, res, next) => {
+    let user = req.session.currentUser
+        User.findById(user._id)
+        .then((result)=>{
+             if(result.role === "senior"){
+                Ticket.find()
+                 .then((result)=>{
+                   res.render("senior/tickets", {tickets:result});
+               })
+                .catch((err)=>console.log(err))
+            }
+           else if (result.role === "junior"){
             // ********************************agrergar result dp render*********************************
-           res.render("junior/create-ticket");
-    //     }
-    //     else{res.redirect("/auth/login")}
-    // }).catch((err)=>console.log(err))
+           res.render("junior/create-ticket", {user: result});
+           }
+           else{res.redirect("/auth/login")}
+        }).catch((err)=>console.log(err))
 });
 
 router.get("/:id/pending", (req,res,next)=>{
-    // let id = req.params.id
-    // Ticket.find({$and:[{'author': id}, {'isPending': true}]})
-    // .then((result)=>{
-        // ************************agregar result dp render****************************
-        res.render("junior/pending-tickets");
-    // })
-    // .catch((err)=>console.log(err))
+    let id = req.params.id
+    User.findById(id)
+    .then((data)=>{
+        Ticket.find({$and:[{'author': id}, {'isPending': true}]})
+        .then((result)=>{
+            // ************************agregar result dp render****************************
+            res.render("junior/pending-tickets", {data: result, user:data});
+        })
+        .catch((err)=>console.log(err)) 
+    }).catch((err)=>console.log(err))
+     
 })
 
 router.get("/:id", (req, res, next) => {
