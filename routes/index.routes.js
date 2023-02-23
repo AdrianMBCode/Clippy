@@ -14,7 +14,7 @@ router.post("/send-email", (req, res, next) => {
     to: email,
     subject: subject,
     text: message,
-    html: templates.templateExample(message),
+    html: templates.templateJunior(message),
   })
   .then((info) =>{
     console.log(info)

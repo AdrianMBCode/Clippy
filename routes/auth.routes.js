@@ -77,45 +77,38 @@ router.post("/signup/:role", isLoggedOut, (req, res, next) => {
     })
     .then((user) => {
       console.log("Usuario registrado: ", user);
-      //let usuarioRegistrado = req.params.user
-      let message = "hola"
-      transporter.sendMail({
-        
-          //html: 'Embedded image: <img src="cid:clippy1"/>',
-          attachments: [{
-              filename: 'headerMailClippy.png',
-              path: 'http://localhost:3000/images/headerMailClippy.png',
-              cid: 'clippy1' //same cid value as in the html img src
-          }],
-
-        from: `"Clippy " <${process.env.EMAIL_ADDRESS}>`,
-        to: email,
-        subject: "Bienvenidos a Clippy",
-        username: username,
-        html: templates.templateExample(username),
-      },
-      (err)=> console.log("error nodemailer" , err)
-
-  
-        )
-
-
-
-      res.redirect("/auth/login");
-    })
-    .catch((error) => {
-      if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render(`auth/${role}`, { errorMessage: error.message });
-      } else if (error.code === 11000) {
-        res.status(500).render(`auth/${role}`, {
-          errorMessage:
-            "Username and email need to be unique. Provide a valid username or email.",
-        });
-      } else {
-        next(error);
-      }
-    });
-});
+            // elegir plantilla de correo basándose en el rol del usuario
+            let message;
+            //let message1;
+            if (role === "junior") {
+              message = templates.templateJunior(username);
+            } else if (role === "senior") {
+              message = templates.templateSenior(username);
+            }
+      
+            // enviar correo electrónico
+            transporter.sendMail({
+              from: `"Clippy " <${process.env.EMAIL_ADDRESS}>`,
+              to: email,
+              subject: "Bienvenidos a Clippy",
+              username: username,
+              html: message,
+            }, (err)=> console.log("error nodemailer" , err))
+      
+            res.redirect("/auth/login");
+          })
+          .catch((error) => {
+            if (error instanceof mongoose.Error.ValidationError) {
+              res.status(500).render(`auth/${role}`, { errorMessage: error.message });
+            } else if (error.code === 11000) {
+              res.status(500).render(`auth/${role}`, {
+                errorMessage: "El nombre de usuario y el correo electrónico deben ser únicos. Proporcione un nombre de usuario o correo electrónico válido.",
+              });
+            } else {
+              next(error);
+            }
+          });
+      });
 
 // GET /auth/login
 router.get("/login", isLoggedOut, (req, res) => {
