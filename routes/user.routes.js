@@ -28,26 +28,26 @@ router.post("/:id/tickets/:ticketId", (req, res, next) => {
 });
 
 router.get("/:id/solved", (req, res, next) => {
-    // let id = req.params.id
-    // console.log(id)
-    // User.findById(id)
-    // .then((result)=>{
-    //     if(result.role === "senior"){
-    //         Ticket.find({$and:[{'solution.author': id}, {'isPending': false}]})
-    //         .then((result)=>{
-                // res.render("senior/solved-tickets", result);
-    //         })
-    //         .catch((err)=>console.log(err))
-    //     }else if (result.role === "junior"){
-    //         Ticket.find({$and:[{'author': id}, {'isPending': false}]})
-    //         .then((result)=>{
+     let id = req.params.id
+     console.log(id)
+     User.findById(id)
+     .then((result)=>{
+         if(result.role === "senior"){
+             Ticket.find({$and:[{'solution.author': id}, {'isPending': false}]})
+             .then((result)=>{
+                 res.render("senior/solved-tickets", result);
+             })
+             .catch((err)=>console.log(err))
+         }else if (result.role === "junior"){
+             Ticket.find({$and:[{'author': id}, {'isPending': false}]})
+             .then((data)=>{
         // ****************************agregar {tickets:result} dp render************************************
-                res.render("junior/solved-tickets");
-    //         })
-    //     }else{
-    //         res.redirect("/auth/login")
-    //     }
-    // }).catch((err)=>console.log(err))
+                res.render("junior/solved-tickets", {tickets:data, user: result});
+             })
+         }else{
+             res.redirect("/auth/login")
+         }
+     }).catch((err)=>console.log(err))
 });
 
 router.post("/:id/tickets", (req, res, next) => {
@@ -91,21 +91,21 @@ router.get("/:id/pending", (req,res,next)=>{
 })
 
 router.get("/:id", (req, res, next) => {
-    // let id = req.params.id
-    // User.findById(id)
-    // .then((result)=>{
-    //     if(result.role === "senior"){
+    let id = req.params.id
+    User.findById(id)
+    .then((result)=>{
+         if(result.role === "senior"){
         // ***************agregar result dp render****************
             res.render("senior/profile")
-    //     }else if (result.role === "junior"){
-    //         res.render("junior/profile", result)
-    //     }else if(result.role === "admin"){
-    //         res.render("admin/profile", result)
-    //     }else{
-    //         res.redirect("/auth/login")
-    //     }
-    // })
-    // .catch((err)=>console.log(err))
+         }else if (result.role === "junior"){
+             res.render("junior/profile", {data: result})
+         }else if(result.role === "admin"){
+             res.render("admin/profile", result)
+         }else{
+             res.redirect("/auth/login")
+         }
+     })
+     .catch((err)=>console.log(err))
 });
 
 
