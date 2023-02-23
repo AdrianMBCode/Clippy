@@ -29,15 +29,15 @@ router.post("/:id/tickets/:ticketId", (req, res, next) => {
 
 router.get("/:id/solved", (req, res, next) => {
      let id = req.params.id
-     console.log(id)
      User.findById(id)
      .then((result)=>{
          if(result.role === "senior"){
-             Ticket.find({$and:[{'solution.author': id}, {'isPending': false}]})
-             .then((result)=>{
-                 res.render("senior/solved-tickets", result);
-             })
-             .catch((err)=>console.log(err))
+            console.log(result, "hola rocio")
+            //  Ticket.find({$and:[{'solution.author': id}, {'isPending': false}]})
+            //  .then((result)=>{
+                 res.render("senior/solved-tickets",{user: result});
+            //  })
+            //  .catch((err)=>console.log(err))
          }else if (result.role === "junior"){
              Ticket.find({$and:[{'author': id}, {'isPending': false}]})
              .then((data)=>{
@@ -72,13 +72,13 @@ router.get("/tickets", (req, res, next) => {
         .then((result)=>{
              if(result.role === "senior"){
                 Ticket.find()
-                 .then((result)=>{
-                   res.render("senior/tickets", {tickets:result});
+                 .then((data)=>{
+                    console.log(result);
+                   res.render("senior/tickets", {tickets:data, user:result});
                })
                 .catch((err)=>console.log(err))
             }
            else if (result.role === "junior"){
-            // ********************************agrergar result dp render*********************************
            res.render("junior/create-ticket", {user: result});
            }
            else{res.redirect("/auth/login")}
@@ -91,7 +91,6 @@ router.get("/:id/pending", (req,res,next)=>{
     .then((data)=>{
         Ticket.find({$and:[{'author': id}, {'isPending': true}]})
         .then((result)=>{
-            // ************************agregar result dp render****************************
             res.render("junior/pending-tickets", {data: result, user:data});
         })
         .catch((err)=>console.log(err)) 
