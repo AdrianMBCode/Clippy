@@ -18,9 +18,12 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
+      minlength: 6,
       required: true,
     },
-    role: { type: String, enum: ["admin", "junior", "senior", "pending"]}
+    role: { type: String, enum: ["admin", "junior", "senior", "pending"]},
+    image: String,
+    gitHubUrl: String
   }
 );
 

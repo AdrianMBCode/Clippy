@@ -163,7 +163,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         req.session.currentUser = user.toObject();
         // Remove the password field
         delete req.session.currentUser.password;
-        res.render("junior/profile");
+        res.redirect(`/${user._id}`)
       } else if (user.role === "senior") {
         // If user is a senior user, render the senior profile view
         req.session.currentUser = user.toObject();

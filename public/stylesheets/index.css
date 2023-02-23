@@ -58,6 +58,11 @@ body{
     top: 8px;
     width: 32px;
   }
+
+  .blog-author > #h3Pending::before{
+    background: attr(data-image url);
+  }
+
   .blog-author h3 {
     color: #fff;
     font-weight: 100;
@@ -329,6 +334,7 @@ a.article:hover {
 }
 .btn-secondary{
   background-color: #45A1BA;
+  margin-right: 5px;
 }
 
 .detailedTicketView{
@@ -427,6 +433,30 @@ select {
     color: #ffc700;  
 }
 
+.blogauthorPending{
+  height: 220px;
+  display: flex;
+  justify-content: center;
+}
+
+.h3Pending{
+  height: 100%;
+}
+
+.blog-author .h3Pending::before, .blog-author--no-cover .h3Pending::before{
+  height: 90%;
+  width: 220px;
+}
+
+.card-container > .profileAdminCard{
+  width: 20rem;
+}
+
+.blog-summary > p > a{
+  color: blue;
+  text-decoration: underline;
+}
+
 @keyframes zoom-in-zoom-out {
   0% {
     transform: scale(1, 1);
@@ -459,15 +489,24 @@ select {
     .blog-container{
         width: 28rem;
     }
+    .card-container > .profileAdminCard{
+      width: 25rem;
+    }
   }
   @media screen and (min-width: 767px) {
     .blog-container{
         width: 30rem;  
+    }
+  .card-container > .profileAdminCard{
+      width: 28rem;
     }
   }
 
   @media screen and (min-width: 959px) {
     .blog-container{
         width: 42rem;
+    }
+     .card-container > .profileAdminCard{
+      width: 28rem;
     }
 }
