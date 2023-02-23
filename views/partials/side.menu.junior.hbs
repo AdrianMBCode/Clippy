@@ -1,24 +1,29 @@
 <nav id="sidebar">
-    <div class="sidebar-header">
-                <h3>Clippy</h3>
-            </div>
+  <div class="sidebar-header">
+    <h3>Clippy</h3>
+  </div>
 
-            <ul class="list-unstyled components">
-                <p>Your tickets</p>
-                <li class="active liSideMenu">
-                    <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="sideBarLinks">Create Ticket</a>
-                </li>
-                <li class="liSideMenu">
-                    <a href="#" class="sideBarLinks">Solved</a>
-                </li>
-                <li class="liSideMenu">
-                    <a href="#" class="sideBarLinks">Pending</a>
-                </li>
-            </ul>
+  <ul class="list-unstyled components">
+    <p>Your tickets</p>
+    <li class="liSideMenu">
+      <a href="/tickets" class="sideBarLinks">Create Ticket</a>
+    </li>
+    <li class="liSideMenu">
+      <a href="/{{_id}}/solved" class="sideBarLinks">Solved</a>
+    </li>
+    <li class="liSideMenu">
+      <a href="/{{_id}}/pending" class="sideBarLinks">Pending</a>
+    </li>
+  </ul>
 
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to Home</a>
-                </li>
-            </ul>
+  <ul class="list-unstyled CTAs">
+    <li>
+      <a
+        href="/auth/login"
+        class="article"
+      >Back to Home</a>
+    </li>
+  </ul>
 </nav>
+
+

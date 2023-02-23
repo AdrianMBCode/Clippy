@@ -31,8 +31,6 @@ router.get("/senior", isLoggedOut, (req, res, next) => {
 
 // POST /auth/signup
 router.post("/signup/:role", isLoggedOut, (req, res, next) => {
-  console.log("dentrorunta");
-  console.log("dentroruntajej");
   const { username, email, password, repeatPassword } = req.body;
   let role = req.params.role;
 
@@ -111,7 +109,7 @@ router.post("/signup/:role", isLoggedOut, (req, res, next) => {
       });
 
 // GET /auth/login
-router.get("/login", isLoggedOut, (req, res) => {
+router.get("/login", isLoggedOut, (req, res, next) => {
   res.render("auth/login");
 });
 
@@ -156,13 +154,18 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         req.session.currentUser = user.toObject();
         // Remove the password field
         delete req.session.currentUser.password;
-        res.render("junior/profile");
+        res.redirect(`/${user._id}`);
+
       } else if (user.role === "senior") {
         // If user is a senior user, render the senior profile view
         req.session.currentUser = user.toObject();
         // Remove the password field
         delete req.session.currentUser.password;
-        res.render("senior/profile");
+        res.render("senior/profile",{user: req.session.currentUser});
+        
+      } else if (user.role === "admin") {
+        res.render("admin/profile")
+
       } else {
         // If the user's type is neither "junior" nor "senior", return an error
         res
@@ -178,13 +181,15 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 // GET /auth/logout
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
-    if (err) {
-      res.status(500).render("auth/logout", { errorMessage: err.message });
-      return;
-    }
+     if (err) {
+       res.status(500).render("auth/logout", { errorMessage: err.message });
+       return;
+     }
 
-    res.redirect("/");
-  });
-});
+     res.redirect("/");
+   });
+ });
+
+
 
 module.exports = router;
