@@ -108,13 +108,33 @@ router.get("/:id", (req, res, next) => {
          }else if (result.role === "junior"){
              res.render("junior/profile", {data: result})
          }else if(result.role === "admin"){
-             res.render("admin/profile", result)
+            User.find({'role': 'pending'})
+            .then((data)=>{
+                res.render("admin/profile", {result, data})
+            }).catch((err)=>console.log(err))
          }else{
              res.redirect("/auth/login")
          }
      })
      .catch((err)=>console.log(err))
 });
+
+router.get("/aproved/:id", (req, res, next) => {
+    let id = req.params.id;
+    User.findOneAndUpdate({_id: id},{role: "senior"}, {new: false})
+    .then(result => {
+        console.log(result)
+        res.render("admin/profile")
+    })
+})
+
+router.get("/delete/:id", (req, res, next) => {
+    let id = req.params.id;
+    User.findByIdAndDelete(id)
+    .then(result => {
+        res.render("admin/profile")
+    })
+})
 
 
 

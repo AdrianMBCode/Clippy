@@ -1,1 +1,38 @@
-<h1>Vista default de perfil de Admin</h1>
+ <div class="wrapper" id="wrapper">
+        <!-- Sidebar  -->
+{{>side.menu.admin}}
+        <!-- Page Content  -->
+        <div id="content">
+        {{>nav.profiles}}
+        <div class="card-container">
+        {{#each data}}
+        <div class="blog-container detailCardView profileAdminCard">       
+            <div class="blog-header">
+                <div class="blog-cover clippyBlogCover">
+                        <div class="blog-author blogauthorPending">
+                        <h3 class="h3Pending" id="h3Pending" data-image="https://placekitten.com/525/252"></h3>
+                      </div>
+                </div>
+            </div>
+            <div class="blog-body">
+                    <div class="blog-body">
+                    <div class="blog-title">
+                    <h1><a href="#">{{username}}</a></h1>
+                    </div>
+                    <div class="blog-summary">
+                      <p><a href="">Github link</a></p>
+                    </div>
+            </div>
+            <div class="blog-footer">
+              <ul>
+              </ul>
+              <button type="button" class="btn btn-secondary mb-3 btn-lg btn-lg"> <a href="/aproved/{{_id}}">Approve</a></button>
+              <button type="button" class="btn btn-secondary mb-3 btn-lg btn-lg"> <a href="/delete/{{_id}}">Dismiss</a></button>
+            </div>
+          
+        </div>
+        </div>
+        {{/each}}
+</div>
+{{log result}}
+{{log data}}
