@@ -5,8 +5,8 @@
         <div id="content">
         {{>nav.profiles}}
     <div class="detailedTicketView">
-        <div class="blog-container detailCardView">
-                  
+        <div class="blog-container detailCardView">  
+          <form action="/{{user._id}}/tickets" method="post">
             <div class="blog-header">
                 <div class="blog-cover clippyBlogCover">
                 <img src="/images/logoClippy.png" class="imgLogoAnimation" alt="">
@@ -14,33 +14,31 @@
             </div>
             <div class="blog-body">
             <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Title</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="title">
             </div>
             <label for="textSolution" class="form-label">Description:</label>
             <div class="form-floating mb-3" id="textSolution">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
                 <label for="floatingTextarea2">Type here...</label>
             </div>
             <label for="fileUpload" class="form-label">Add supporting image:</label>
             <div class="input-group mb-3" id="fileUpload" >
-                <input type="file" class="form-control" id="inputGroupFile02">
+                <input type="text" class="form-control" id="inputGroupFile02" name="image">
                 <label class="input-group-text" for="inputGroupFile02" id="labelArchivo">Upload</label>
             </div>
             <label for="basic-url" class="form-label">Github Repo URL</label>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon3">https://github.com/</span>
-              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="gitHubRepo">
               </div>
             </div>
             <div class="blog-footer">
               <ul>
               </ul>
-              <a href="junior/pending-tickets">
-                <button type="button" class="btn btn-secondary mb-3 btn-lg btn-lg">Send Ticket</button>
-              </a>
-              
+                <button type="submit" class="btn btn-secondary mb-3 btn-lg btn-lg">Send Ticket</button>
             </div>
-          
+          </form>   
           </div>
-    </div>
+</div>
+{{log user}}

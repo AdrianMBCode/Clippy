@@ -1,12 +1,11 @@
  <div class="wrapper" id="wrapper">
         <!-- Sidebar  -->
-{{>side.menu.admin}}
-{{log this.user}}
+{{>side.menu.admin user}}
         <!-- Page Content  -->
         <div id="content">
         {{>nav.profiles}}
         <div class="card-container">
-        {{#each data}}
+        {{#each this.seniors}}
         <div class="blog-container detailCardView profileAdminCard">       
             <div class="blog-header">
                 <div class="blog-cover clippyBlogCover">
@@ -27,8 +26,6 @@
             <div class="blog-footer">
               <ul>
               </ul>
-              <button type="button" class="btn btn-secondary mb-3 btn-lg btn-lg"> <a href="/aproved/{{_id}}">Approve</a></button>
-              <button type="button" class="btn btn-secondary mb-3 btn-lg btn-lg"> <a href="/delete/{{_id}}">Dismiss</a></button>
             </div>
           
         </div>

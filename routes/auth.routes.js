@@ -167,10 +167,10 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         req.session.currentUser = user.toObject();
         // Remove the password field
         delete req.session.currentUser.password;
-        res.render("senior/profile",{user: req.session.currentUser});
+        res.redirect(`/${user._id}`);
         
       } else if (user.role === "admin") {
-        res.render("admin/profile")
+        res.redirect(`/${user._id}`)
 
       } else {
         // If the user's type is neither "junior" nor "senior", return an error

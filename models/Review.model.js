@@ -3,10 +3,6 @@ const { Schema, model } = require("mongoose");
 
 const reviewSchema = new Schema(
     {        
-      associatedTicket: {
-      type: Schema.Types.ObjectId,
-      ref: "Ticket"
-    },
       description: {
         type: String,
         required: false,

@@ -4,24 +4,23 @@
         <!-- Page Content  -->
         <div id="content">
         {{>nav.profiles}}
-                <div class="detailedTicketView">
+                <div>
                     <div class="card-container">
-                    <div class="blog-container detailCardView ticketSolvedViewCard">
+                      {{#each this.tickets}}
+                    <div class="blog-container ticketSolvedViewCard">
                               
                         <div class="blog-header">
-                          <div class="blog-cover mb-3">
+                          <div class="blog-cover mb-3"></div>
                             <div class="blog-author">
                                 <h3>Russ Beye</h3>
                             </div>
                           </div>
-                        </div>
                       
                         <div class="blog-body">
                           <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
-                            <div class="card-header">" I can't merge "</div>
+                            <div class="card-header">{{title}}</div>
                             <div class="card-body">
-                              <h5 class="card-title">You have to change your command</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <p class="card-text">{{solution.text}}</p>
                             </div>
                           </div>
                           <p class="fst-italic">"Lucas, the senior, solved my doubts with great atention to detail, and the explanation was excellent"</p>
@@ -42,125 +41,10 @@
                           <ul>
                           </ul>
                         </div>
-                      
                     </div>
-                    <div class="blog-container detailCardView ticketSolvedViewCard">
-                              
-                        <div class="blog-header">
-                          <div class="blog-cover mb-3">
-                            <div class="blog-author">
-                                <h3>Russ Beye</h3>
-                            </div>
-                          </div>
-                        </div>
-                      
-                        <div class="blog-body">
-                          <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
-                            <div class="card-header">" I can't merge "</div>
-                            <div class="card-body">
-                              <h5 class="card-title">You have to change your command</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
-                          <p class="fst-italic">"Lucas, the senior, solved my doubts with great atention to detail, and the explanation was excellent"</p>
-                          <div class="rate solvedTickets">
-                            <input type="radio" id="star5" name="rate" value="5" class="checkedStar"/>
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" class="checkedStar"/>
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" class="checkedStar"/>
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" class="checkedStar"/>
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" class="checkedStar"/>
-                            <label for="star1" title="text">1 star</label>
-                          </div>
-                        </div>
-                        <div class="blog-footer">
-                          <ul>
-                          </ul>
-                        </div>
-                      
-                    </div>
-                    <div class="blog-container detailCardView ticketSolvedViewCard">
-                              
-                        <div class="blog-header">
-                          <div class="blog-cover mb-3">
-                            <div class="blog-author">
-                                <h3>Russ Beye</h3>
-                            </div>
-                          </div>
-                        </div>
-                      
-                        <div class="blog-body">
-                          <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
-                            <div class="card-header">" I can't merge "</div>
-                            <div class="card-body">
-                              <h5 class="card-title">You have to change your command</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
-                          <p class="fst-italic">"Lucas, the senior, solved my doubts with great atention to detail, and the explanation was excellent"</p>
-                          <div class="rate solvedTickets">
-                            <input type="radio" id="star5" name="rate" value="5" class="checkedStar"/>
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" class="checkedStar"/>
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" class="checkedStar"/>
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" class="checkedStar"/>
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" class="checkedStar"/>
-                            <label for="star1" title="text">1 star</label>
-                          </div>
-                        </div>
-                        <div class="blog-footer">
-                          <ul>
-                          </ul>
-                        </div>
-                      
-                    </div>
-                    <div class="blog-container detailCardView ticketSolvedViewCard">
-                              
-                        <div class="blog-header">
-                          <div class="blog-cover mb-3">
-                            <div class="blog-author">
-                                <h3>Russ Beye</h3>
-                            </div>
-                          </div>
-                        </div>
-                      
-                        <div class="blog-body">
-                          <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
-                            <div class="card-header">" I can't merge "</div>
-                            <div class="card-body">
-                              <h5 class="card-title">You have to change your command</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                          </div>
-                          <p class="fst-italic">"Lucas, the senior, solved my doubts with great atention to detail, and the explanation was excellent"</p>
-                          <div class="rate solvedTickets">
-                            <input type="radio" id="star5" name="rate" value="5" class="checkedStar"/>
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" class="checkedStar"/>
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" class="checkedStar"/>
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" class="checkedStar"/>
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" class="checkedStar"/>
-                            <label for="star1" title="text">1 star</label>
-                          </div>
-                        </div>
-                        <div class="blog-footer">
-                          <ul>
-                          </ul>
-                        </div>
-                      
-                      </div>
-                </div>
+                    {{/each}}
+                    
             </div>
 
         </div>
     </div>
-{{log tickets}}

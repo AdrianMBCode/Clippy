@@ -4,11 +4,11 @@
         <!-- Page Content  -->
         <div id="content">
         {{>nav.profiles}}
-                <div class="detailedTicketView">
                     <div class="card-container">
+                      {{#each tickets}}
                         <div class="blog-container detailCardView ticketSolvedViewCard">
                             <div class="blog-header">
-                              <div class="blog-cover">
+                              <div class="blog-cover" style="background:url({{solution.imgSolution}});">
                               </div>
                             </div>
                           
@@ -19,88 +19,38 @@
                               <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
                                 <div class="card-header">" I can't merge "</div>
                                 <div class="card-body">
-                                  <h5 class="card-title">You have to change your command</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                  <p class="card-text">{{solution.text}}</p>
                                 </div>
                               </div>
+                          <form action="/{{../user._id}}/{{_id}}/review" method="post">
+                          <label for="textSolution" class="form-label">Your review:</label>
+                          <div class="form-floating mb-3" id="textSolution">
+                          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
+                          <label for="floatingTextarea2">Type here...</label>
+                          <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4"/>
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3"/>
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2"/>
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1"/>
+                            <label for="star1" title="text">1 star</label>
+                          </div>
+                          </div> 
                             </div>
                             <div class="blog-footer">
                               <ul>
                               </ul>
-                            </div>          
+                            <button type="submit" class="btn btn-secondary mb-3 btn-lg btn-lg">Send</button>
+                            </div> 
+                            </form>        
                         </div>
-                        <div class="blog-container detailCardView ticketSolvedViewCard">
-                            <div class="blog-header">
-                              <div class="blog-cover">
-                              </div>
-                            </div>
-                          
-                            <div class="blog-body">
-                              <div class="alert alert-success mt-3" role="alert">
-                                Your solution—check it out!
-                              </div>
-                              <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">" I can't merge "</div>
-                                <div class="card-body">
-                                  <h5 class="card-title">You have to change your command</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="blog-footer">
-                              <ul>
-                              </ul>
-                            </div>          
-                        </div>
-                        <div class="blog-container detailCardView ticketSolvedViewCard">
-                            <div class="blog-header">
-                              <div class="blog-cover">
-                              </div>
-                            </div>
-                          
-                            <div class="blog-body">
-                              <div class="alert alert-success mt-3" role="alert">
-                                Your solution—check it out!
-                              </div>
-                              <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">" I can't merge "</div>
-                                <div class="card-body">
-                                  <h5 class="card-title">You have to change your command</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="blog-footer">
-                              <ul>
-                              </ul>
-                            </div>          
-                        </div>
-                        <div class="blog-container detailCardView ticketSolvedViewCard">
-                            <div class="blog-header">
-                              <div class="blog-cover">
-                              </div>
-                            </div>
-                          
-                            <div class="blog-body">
-                              <div class="alert alert-success mt-3" role="alert">
-                                Your solution—check it out!
-                              </div>
-                              <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
-                                <div class="card-header">" I can't merge "</div>
-                                <div class="card-body">
-                                  <h5 class="card-title">You have to change your command</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="blog-footer">
-                              <ul>
-                              </ul>
-                            </div>          
-                        </div>
+                          {{/each}}
                     </div>
-                </div>
             </div>
 
         </div>
-    </div>
+</div>

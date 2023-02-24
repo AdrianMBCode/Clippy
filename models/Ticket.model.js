@@ -32,7 +32,12 @@ const ticketSchema = new Schema(
             imgSolution: String
         },
         isPending: {type: Boolean, default: true},
-        technologiesUsed: [String]
+        technologiesUsed: [String],
+        isReviewed: {type: Boolean, default: false},
+        associatedReview: {
+            type: Schema.Types.ObjectId,
+            ref: "Review"
+        }
     },
     {
       // this second object adds extra properties: `createdAt` and `updatedAt`

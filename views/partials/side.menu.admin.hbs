@@ -6,10 +6,11 @@
             <ul class="list-unstyled components">
                 <p>Your tickets</p>
                 <li class="liSideMenu">
-                    <a href="#" class="sideBarLinks">All Aprovals</a>
+                    <a href="/seniors" class="sideBarLinks">All Aprovals</a>
                 </li>
                 <li class="liSideMenu">
-                    <a href="#" class="sideBarLinks">Pending Approval</a>
+                    {{log this}}
+                    <a href="/{{this.user._id}}" class="sideBarLinks">Pending Approval</a>
                 </li>
             </ul>
 
