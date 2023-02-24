@@ -7,6 +7,85 @@ body {
     background: #e5ded8;
 }
 
+#carouselExampleSlidesOnly {
+  z-index: 2;
+}
+
+#logoIndex {
+  z-index: 2;
+}
+
+/* CARD UI */
+
+#tarjetaIndex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.717);
+}
+
+.carda {
+  width: 50vw;
+  height: 80vh;
+  background: #d7ccc3;
+  position: relative;
+  display: flex;
+  place-content: center;
+  flex-direction: column;
+  place-items: center;
+  overflow: hidden;
+  border: 2px;
+  border-radius: 20px;
+}
+
+.carda h2 {
+  z-index: 1;
+  color: rgba(0, 0, 0, 0.717);
+  font-size: 1em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.carda h1 {
+  z-index: 1;
+  color:rgba(0, 0, 0, 0.717);
+  font-size: 2em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.carda::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  background-image: linear-gradient(10deg, #E5DED8, #d2c4b8);
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.carda::after {
+  content: '';
+  position: absolute;
+  background:rgb(248, 246, 246)
+  ;
+  inset: 5px;
+  border-radius: 15px;
+}  
+/* .card:hover:before {
+  background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
+  animation: rotBGimg 3.5s linear infinite;
+} */
+
+
 .card-container {
     box-sizing: border-box;
     display: flex;
