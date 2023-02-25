@@ -9,7 +9,7 @@ Hi! We are Adrián, Rocío and Lucas, web developers. This project constitutes o
 ![Project Image](https://i.imgur.com/6k3J5gW.png "Project Image")
 
 ## Deployment
-You can check the app fully deployed [here](https://afabregasm-back.herokuapp.com/api/).
+You can check the app fully deployed [here](https://clippy1.fly.dev/).
 
 ## Work structure
 We developed this project using [Trello](https://trello.com/home) to organize our workflow.
